@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="box">
+        {% crispy form %}
+      </div>
+    {% if counts %}
+    <hr>
+    <div class="box">
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Word</th>
+        <th>Occurance</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for word, count in counts.items %}
+          <tr>
+        <td>{{word}}</td>
+        <td>{{count}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+    {% if frequency %}
+        <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>{{ text }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for word in frequency %}
+          <tr>
+            <td>{{word}}</td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+    {% endif %}
+    </div>
+    {% endif %}
+{% endblock %}

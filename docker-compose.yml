@@ -1,0 +1,10 @@
+version: '3'
+services:
+  python:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/wordprocessor
+    ports:
+      - "8000:8000"

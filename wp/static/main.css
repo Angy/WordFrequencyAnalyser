@@ -1,0 +1,25 @@
+/*ul.errorlist {display:none;}*/
+.jumbotron{
+    background: #003366;
+}
+
+h1{
+    color: darkgrey;
+}
+
+.jumbotron p{
+    color: greenyellow;
+}
+.box{
+    margin: 0 20% auto;
+}
+
+#hint_id_word{
+    color: dimgrey;
+    font-size: 13px;
+}
+
+#hint_id_frequency{
+    color: dimgrey;
+    font-size: 13px;
+}
