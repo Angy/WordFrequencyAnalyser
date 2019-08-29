@@ -16,11 +16,17 @@ def home(request):
             if form.cleaned_data['word']:
                 #  alphabetically list of all the input words
                 split_words = sorted(form.cleaned_data['word'].split(','))
+                normalised_split_words = []
 
-                # all words and their frequencyies
+                # fetch only words that are in the file
+                for word in split_words:
+                    if word.strip() in words_from_file:
+                        normalised_split_words.append(word.strip())
+
+                # all input words and their frequencies
                 word_list = calculate_frequency_for_word(
                     word_list=words_from_file,
-                    words=[words.strip() for words in split_words]
+                    words=normalised_split_words
                 )
 
                 if form.cleaned_data['frequency']:
@@ -29,12 +35,17 @@ def home(request):
                     frequency = most_frequent_n_words(n=desired_frequency,
                                                       words=words_from_file)
                     text = '%d frequent words' % desired_frequency
+
                 else:
-                    # list of word(s) with highest frequency
-                    frequency = calculate_highest_frequency(
-                        word_list=word_list
-                    )
-                    text = 'Most frequent word'
+                    if word_list:
+                        # list of word(s) with highest frequency
+                        frequency = calculate_highest_frequency(
+                            word_list=word_list
+                        )
+                        text = 'Most frequent word'
+                    else:
+                        frequency = 0
+                        text = 'No such word found'
 
             else:
                 # get all the words from input file if no word is specified
