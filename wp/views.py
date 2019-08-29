@@ -20,7 +20,7 @@ def home(request):
                 # all words and their frequencyies
                 word_list = calculate_frequency_for_word(
                     word_list=words_from_file,
-                    words=split_words
+                    words=[words.strip() for words in split_words]
                 )
 
                 if form.cleaned_data['frequency']:
