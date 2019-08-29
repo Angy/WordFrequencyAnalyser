@@ -2,7 +2,6 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django import forms
 from django.core.exceptions import ValidationError
-from django.forms import HiddenInput, RadioSelect
 
 
 def validate_file_extension(value):
@@ -12,12 +11,12 @@ def validate_file_extension(value):
         raise ValidationError(u'Invalid File format')
 
 
-choices = (('all', 'all'),
-            ('word', 'words'))
+choices = (('all', 'all'), ('word', 'words'))
 
 
 class FrequencyAnalyserForm(forms.Form):
-    file = forms.FileField(validators=[validate_file_extension],label='')
+    file = forms.FileField(validators=[validate_file_extension], label='',
+                           help_text='Use only .txt, .doc, .docx files')
     word = forms.CharField(required=False,
                            widget=forms.TextInput(
                                attrs={'placeholder': 'the, hill, on'}

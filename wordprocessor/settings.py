@@ -58,7 +58,7 @@ WSGI_APPLICATION = 'wordprocessor.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.environ.get('DB_NAME','db.sqlite3')
+        'NAME': os.environ.get('DB_NAME', '')
     }
 }
 
@@ -89,3 +89,4 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

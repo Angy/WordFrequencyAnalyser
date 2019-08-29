@@ -19,8 +19,8 @@ def home(request):
 
                 # all words and their frequencyies
                 word_list = calculate_frequency_for_word(
-                word_list=words_from_file,
-                words=split_words
+                    word_list=words_from_file,
+                    words=split_words
                 )
 
                 if form.cleaned_data['frequency']:
@@ -28,16 +28,18 @@ def home(request):
                     # get a list of n frequent words
                     frequency = most_frequent_n_words(n=desired_frequency,
                                                       words=words_from_file)
-                    text = '%d frequent words' %desired_frequency
+                    text = '%d frequent words' % desired_frequency
                 else:
                     # list of word(s) with highest frequency
-                    frequency = calculate_highest_frequency(word_list=word_list)
+                    frequency = calculate_highest_frequency(
+                        word_list=word_list
+                    )
                     text = 'Most frequent word'
 
             else:
                 # get all the words from input file if no word is specified
                 word_list = _all_words_count(
-                word_list=words_from_file
+                    word_list=words_from_file
                 )
                 if form.cleaned_data['frequency']:
                     desired_frequency = form.cleaned_data['frequency']
@@ -52,8 +54,8 @@ def home(request):
                         word_list=word_list)
                     text = 'Most frequent word'
 
-            return render(request, 'home.html', {'form':form,
-                                                 'counts':word_list,
+            return render(request, 'home.html', {'form': form,
+                                                 'counts': word_list,
                                                  'frequency': frequency,
                                                  'text': text})
     else:
